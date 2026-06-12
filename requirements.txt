@@ -1,0 +1,37 @@
+# Core
+pandas==2.2.2
+numpy==1.26.4
+scikit-learn==1.5.1
+scipy==1.13.1
+
+# Visualisation
+matplotlib==3.9.1
+seaborn==0.13.2
+
+# Forecasting
+prophet==1.1.5
+torch==2.3.1
+lightning==2.3.3
+torchmetrics==1.4.0
+
+# ML / Churn
+xgboost==2.0.3
+shap==0.45.1
+optuna==3.6.1
+
+# MLOps
+mlflow==2.14.1
+great-expectations==0.18.15
+evidently==0.4.31
+
+# Dashboard
+streamlit==1.36.0
+plotly==5.22.0
+
+# Orchestration
+apache-airflow==2.9.3
+
+# Utilities
+joblib==1.4.2
+tqdm==4.66.4
+python-dotenv==1.0.1
