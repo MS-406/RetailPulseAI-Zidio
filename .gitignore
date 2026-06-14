@@ -1,0 +1,40 @@
+# Data (too large for git)
+data/raw/
+data/cleaned/*.csv
+
+# Models (large binaries)
+models/*.pkl
+models/*.pt
+models/*.ckpt
+models/checkpoints/
+
+# MLflow
+mlruns/
+mlartifacts/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+*.egg-info/
+dist/
+build/
+
+# Env
+.env
+venv/
+.venv/
+*.env
+
+# Secrets
+*.key
+*.pem
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Exports (generated, not committed)
+exports/*.png
+exports/*.csv
