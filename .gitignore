@@ -11,6 +11,7 @@ models/checkpoints/
 # MLflow
 mlruns/
 mlartifacts/
+*.db
 
 # Python
 __pycache__/

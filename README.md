@@ -81,13 +81,26 @@ Week 2 focused on advanced modeling, churn prediction, inventory logic, drift ch
 
 | Day | Task from brief | Status | Output |
 |---:|---|---|---|
-| 8 | Hybrid forecasting model | Completed | `exports/week2_hybrid_forecast.csv` |
-| 9 | Churn prediction model | Completed | `exports/week2_churn_predictions.csv` |
-| 10 | Inventory optimization logic | Completed | `exports/week2_inventory_recommendations.csv` |
-| 11 | Feature importance analysis | Completed | `exports/week2_feature_importance.csv` |
-| 12 | Drift detection setup | Completed | `exports/week2_drift_checks.csv` |
-| 13 | Automated retraining pipeline plan | Completed | `reports/week1_week2_completion_report.md` |
-| 14 | Week 2 checkpoint | Completed | `reports/week1_week2_completion_report.md` |
+| 8 | Hybrid forecasting model | Completed | `notebooks/06_hybrid_forecasting_inventory.ipynb` |
+| 9 | Churn prediction model | Completed | `notebooks/07_churn_xgboost_optuna.ipynb` |
+| 10 | Inventory optimization logic | Completed | `notebooks/06_hybrid_forecasting_inventory.ipynb` |
+| 11 | Feature importance analysis | Completed | `notebooks/07_churn_xgboost_optuna.ipynb` |
+| 12 | Drift detection setup | Completed | `notebooks/08_drift_evidently.ipynb`, `reports/week2_evidently_drift_report.html` |
+| 13 | Automated retraining pipeline plan | Completed | `dags/retraining_pipeline.py` |
+| 14 | Week 2 checkpoint | Completed | Notebooks 06-08 & DAG |
+
+## Week 3 Status - In Progress
+
+Week 3 focuses on building the interactive Streamlit dashboard.
+
+| Day | Task from brief | Status | Output |
+|---:|---|---|---|
+| 15 | Streamlit dashboard skeleton | Completed | `app/main.py` |
+| 16 | Demand forecasting visualizations | Completed | `app/pages/01_demand_forecasting.py` |
+| 17 | Customer segmentation dashboard | Completed | `app/pages/02_customer_segmentation.py` |
+| 18 | Inventory optimization UI | Pending | - |
+| 19 | Real-time metrics and alerts | Pending | - |
+| 20 | Export functionality | Pending | - |
 
 ## Week 2 Model Summary
 
@@ -131,32 +144,74 @@ Current Week 2 checkpoint metrics:
 | Dashboard roadmap | Streamlit |
 | Monitoring roadmap | Evidently AI-style drift checks |
 
-## How to Run
+## How to Run Step-by-Step
 
-1. Create and activate a Python environment.
-2. Install dependencies:
+This project is built and optimized for Windows. Follow these exact steps in your terminal to reproduce the entire 3-week pipeline.
 
-```bash
+### Step 1: Environment Setup
+First, navigate to the project directory, create a virtual environment, activate it, and install all required libraries.
+```powershell
+# 1. Open PowerShell and navigate to the folder
+cd "d:\college 3rd year\zidio\RetailPulseAI-Zidio"
+
+# 2. Create the virtual environment
+python -m venv .venv
+
+# 3. Activate the virtual environment
+.venv\Scripts\Activate.ps1
+
+# 4. Install dependencies
 pip install -r requirements.txt
 ```
 
-3. Run the Week 2 reproducible pipeline:
+### Step 2: Week 1 - Data Prep & Baseline Models
+Week 1 is entirely notebook-based. You must run these notebooks in order to generate the cleaned datasets and the baseline Prophet/LSTM models.
+1. Open VS Code.
+2. Ensure your Jupyter Kernel is set to `.venv`.
+3. Open and click **"Run All"** on the following notebooks in order:
+   - `notebooks/01_eda.ipynb`
+   - `notebooks/02_customer_segmentation.ipynb`
+   - `notebooks/03_time_series_preparation.ipynb`
+   - `notebooks/04_demand_forecasting.ipynb`
+   - `notebooks/05_lstm_model_implementation.ipynb`
 
-```bash
-python scripts/week2_pipeline.py
+To view the Week 1 MLflow logging and Prophet models, open a terminal and run:
+```powershell
+.venv\Scripts\python.exe -m mlflow ui --backend-store-uri sqlite:///mlflow.db
+```
+*Then open `http://127.0.0.1:5000` in your browser. Press `Ctrl+C` in the terminal to stop the server when done.*
+
+### Step 3: Week 2 - Advanced Pipeline & Models
+Run the core feature engineering pipeline script, which generates customer behavior features and historic hybrid forecasts.
+```powershell
+# Run the core Week 2 pipeline
+.venv\Scripts\python.exe scripts/week2_pipeline.py
 ```
 
-4. Review the completion report:
+Next, open and **"Run All"** on the advanced Week 2 notebooks to train XGBoost, run Optuna, and generate Evidently AI drift reports:
+- `notebooks/06_hybrid_forecasting_inventory.ipynb`
+- `notebooks/07_churn_xgboost_optuna.ipynb`
+- `notebooks/08_drift_evidently.ipynb`
 
-```text
-reports/week1_week2_completion_report.md
+*Note: You can view the generated drift HTML report by double-clicking `reports/week2_evidently_drift_report.html` in your file explorer.*
+
+If you need to verify the Automated Retraining DAG (Day 13 Checkpoint), you can validate the Airflow code using:
+```powershell
+.venv\Scripts\python.exe dags/retraining_pipeline.py
 ```
+
+### Step 4: Week 3 - Interactive Dashboards
+To launch the final Streamlit Executive Dashboard (Days 15-17) with the Demand Forecasting and Churn Risk visualizations, run:
+```powershell
+.venv\Scripts\python.exe -m streamlit run app/main.py
+```
+*The dashboard will automatically open in your default web browser at `http://localhost:8501`. Use the sidebar to navigate between pages.*
 
 ## Current Project Milestone
 
 - Week 1: Completed
-- Week 2: Completed
-- Week 3: Dashboard and analytics layer pending
+- Week 2: Completed (Refactored to XGBoost, Optuna, Evidently, Airflow)
+- Week 3: In Progress (Days 15-17 completed)
 - Week 4: Deployment and production polish pending
 
 ## Submission Notes

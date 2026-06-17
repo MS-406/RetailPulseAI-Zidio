@@ -5,7 +5,7 @@ scikit-learn==1.5.1
 scipy==1.13.1
 
 # Visualisation
-matplotlib==3.9.1
+matplotlib==3.9.2
 seaborn==0.13.2
 
 # Forecasting
@@ -21,7 +21,7 @@ optuna==3.6.1
 
 # MLOps
 mlflow==2.14.1
-great-expectations==0.18.15
+great-expectations<0.18.0
 evidently==0.4.31
 
 # Dashboard
